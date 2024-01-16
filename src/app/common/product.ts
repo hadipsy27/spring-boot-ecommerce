@@ -10,6 +10,6 @@ export class Product {
                 public dateCreated: string ,
                 public lastUpdated: string,
         ){
-            
-        }
+
+    }
 }
