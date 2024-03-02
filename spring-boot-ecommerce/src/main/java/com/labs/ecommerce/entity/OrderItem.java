@@ -30,7 +30,8 @@ public class OrderItem {
     private Long productId;
 
     // Todo Many - to - One Order
-
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
 }

@@ -24,8 +24,6 @@ public class Country {
     @Column(name = "name")
     private String name;
 
-    // TODO: Set up many-to-many with states
-
     @OneToMany(mappedBy = "country")
     @JsonIgnore // To Ignore states in JSON Rest API Country
     private List<State> states;
