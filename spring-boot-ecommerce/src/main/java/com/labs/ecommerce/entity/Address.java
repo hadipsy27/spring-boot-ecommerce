@@ -18,8 +18,8 @@ public class Address {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "contry")
-    private String contry;
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "state")
     private String state;
