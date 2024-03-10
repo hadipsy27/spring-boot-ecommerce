@@ -10,6 +10,7 @@ import com.labs.ecommerce.entity.OrderItem;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import com.stripe.param.PaymentIntentConfirmParams;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -76,6 +77,20 @@ public class CheckoutServiceImpl implements CheckoutService{
         params.put("payment_method_types", paymentMethodTypes);
 
         return PaymentIntent.create(params);
+    }
+
+    @Override
+    public PaymentIntent confirmPaymentIntent(String paymentIntentId) throws StripeException {
+
+        PaymentIntent resource = PaymentIntent.retrieve(paymentIntentId);
+        PaymentIntentConfirmParams params = PaymentIntentConfirmParams.builder()
+                .setPaymentMethod("pm_card_visa")
+                .setReturnUrl("https://www.example.com")
+                .build();
+
+        PaymentIntent paymentIntent = resource.confirm(params);
+
+        return paymentIntent;
     }
 
     private String generateOrderTrackingNumber() {
